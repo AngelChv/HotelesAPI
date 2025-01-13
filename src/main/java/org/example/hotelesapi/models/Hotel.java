@@ -9,6 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "hoteles")
 public class Hotel {
+    //todo evitar los nulos correctamente.
     @Schema(description = "Identificador del hotel", example = "1111", requiredMode = Schema.RequiredMode.REQUIRED)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +23,7 @@ public class Hotel {
     private String descripcion;
 
     @Schema(description = "Categoría del hotel", example = "Apartamento", requiredMode = Schema.RequiredMode.REQUIRED)
-    @NotNull
+    @NotNull // todo parece que no funciona
     private String categoria;
 
     @Schema(description = "Si el hotel tiene o no piscina", defaultValue = "false")
