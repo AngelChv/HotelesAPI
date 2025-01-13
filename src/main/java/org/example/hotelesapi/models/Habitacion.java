@@ -25,5 +25,80 @@ public class Habitacion {
     @Schema(description = "La habitación esta ocupada", defaultValue = "false")
     private boolean ocupada;
 
-    //todo faltan relaciones
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
+
+    public Habitacion() {
+    }
+
+    public Habitacion(int id, int capacidad, double precioPorNoche, boolean desayuno, boolean ocupada, Hotel hotel) {
+        this.id = id;
+        this.capacidad = capacidad;
+        this.precioPorNoche = precioPorNoche;
+        this.desayuno = desayuno;
+        this.ocupada = ocupada;
+        this.hotel = hotel;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @NotNull
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(@NotNull int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public double getPrecioPorNoche() {
+        return precioPorNoche;
+    }
+
+    public void setPrecioPorNoche(double precioPorNoche) {
+        this.precioPorNoche = precioPorNoche;
+    }
+
+    public boolean isDesayuno() {
+        return desayuno;
+    }
+
+    public void setDesayuno(boolean desayuno) {
+        this.desayuno = desayuno;
+    }
+
+    public boolean isOcupada() {
+        return ocupada;
+    }
+
+    public void setOcupada(boolean ocupada) {
+        this.ocupada = ocupada;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+    @Override
+    public String toString() {
+        return "Habitacion{" +
+                "id=" + id +
+                ", capacidad=" + capacidad +
+                ", precioPorNoche=" + precioPorNoche +
+                ", desayuno=" + desayuno +
+                ", ocupada=" + ocupada +
+                ", hotel=" + hotel +
+                '}';
+    }
 }
