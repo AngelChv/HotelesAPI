@@ -25,7 +25,10 @@ public class HotelController {
 
     @GetMapping("/")
     @Operation(summary = "Obtener todos los hoteles", description = "Obtiene una lista de todos los hoteles")
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Lista de hoteles obtenida exitosamente"), @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"), @ApiResponse(responseCode = "404", description = "No se encontraron hoteles")})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista de hoteles obtenida exitosamente"),
+            @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),
+            @ApiResponse(responseCode = "404", description = "No se encontraron hoteles")})
     public List<Hotel> getAll() {
         try {
             return service.findAll();
@@ -36,8 +39,21 @@ public class HotelController {
 
     @PostMapping("save")
     @Operation(summary = "Guardar un hotel", description = "Guarda un hotel en la base de datos")
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Hotel guardado con éxito"), @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),})
-    public Hotel save(@RequestBody @Parameter(description = "Datos a guardar del hotel", example = "{\n" + "\"id\": 0,\n" + "\"nombre\": \"prueba1\",\n" + "\"descripcion\": \"asdfasf\",\n" + "\"categoria\": \"1\",\n" + "\"piscina\": true,\n" + "\"localidad\": \"valladolid\"\n" + "}") Hotel hotel) {
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Hotel guardado con éxito"),
+            @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),})
+    public Hotel save(@RequestBody @Parameter(
+            required = true,
+            description = "Datos a guardar del hotel",
+            example = """
+                    {
+                    "id": 0,
+                    "nombre": "prueba1",
+                    "descripcion": "asdfasf",
+                    "categoria": "1",
+                    "piscina": true,
+                    "localidad": "valladolid"
+                    }""") Hotel hotel) {
         try {
             return service.save(hotel);
         } catch (Exception e) {

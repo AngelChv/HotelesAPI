@@ -14,15 +14,22 @@ public class Habitacion {
 
     @Schema(description = "Cuantas personas pueden dormir en la habitación", example = "2", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotNull
+    @Column(nullable = false)
     private int capacidad;
 
     @Schema(description = "Precio por noche", example = "100", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull
+    @Column(nullable = false)
     private double precioPorNoche;
 
     @Schema(description = "Cuenta con desayuno", defaultValue = "false")
+    @NotNull
+    @Column(nullable = false)
     private boolean desayuno;
 
     @Schema(description = "La habitación esta ocupada", defaultValue = "false")
+    @NotNull
+    @Column(nullable = false)
     private boolean ocupada;
 
     @ManyToOne
@@ -30,6 +37,8 @@ public class Habitacion {
     private Hotel hotel;
 
     public Habitacion() {
+        desayuno = false;
+        ocupada = false;
     }
 
     public Habitacion(int id, int capacidad, double precioPorNoche, boolean desayuno, boolean ocupada, Hotel hotel) {

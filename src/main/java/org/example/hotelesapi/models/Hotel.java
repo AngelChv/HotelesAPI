@@ -17,6 +17,7 @@ public class Hotel {
 
     @Schema(description = "Nombre del hotel", example = "Hotel las claras", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotNull
+    @Column(nullable = false)
     private String nombre;
 
     @Schema(description = "Descripción")
@@ -24,18 +25,24 @@ public class Hotel {
 
     @Schema(description = "Categoría del hotel", example = "Apartamento", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotNull // todo parece que no funciona
+    @Column(nullable = false)
     private String categoria;
 
     @Schema(description = "Si el hotel tiene o no piscina", defaultValue = "false")
+    @NotNull
+    @Column(nullable = false)
     private boolean piscina;
 
     @Schema(description = "Localidad a la que pertenece el hotel", example = "Valladolid")
+    @NotNull
+    @Column(nullable = false)
     private String localidad;
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private Set<Habitacion> habitaciones;
 
     public Hotel() {
+        piscina = false;
     }
 
     public Hotel(int id, String nombre, String descripcion, String categoria, boolean piscina, String localidad, Set<Habitacion> habitaciones) {
