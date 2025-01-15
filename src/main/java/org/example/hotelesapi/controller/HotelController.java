@@ -60,4 +60,19 @@ public class HotelController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al guardar el hotel", e);
         }
     }
+
+    @GetMapping("/{localidad}/{categoria}")
+    @Operation(summary = "Obtener todos los hoteles por localidad y categoría",
+            description = "Obtiene una lista de todos los hoteles filtrados por localidad y categoría")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista de hoteles obtenida exitosamente"),
+            @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),
+            @ApiResponse(responseCode = "404", description = "No se encontraron hoteles")})
+    public List<Hotel> getAllByLocalidadAndCategoria(@PathVariable String localidad, @PathVariable String categoria) {
+        try {
+            return service.findAllByLocalidadAndCategoria(localidad, categoria);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al obtener todos los hoteles", e);
+        }
+    }
 }

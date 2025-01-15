@@ -21,4 +21,8 @@ public class HotelService {
     public List<Hotel> findAll() {
         return repository.findAll();
     }
+
+    public List<Hotel> findAllByLocalidadAndCategoria(String localidad, String categoria) {
+        return repository.findAllByLocalidadAndAndCategoria(localidad, categoria);
+    }
 }
