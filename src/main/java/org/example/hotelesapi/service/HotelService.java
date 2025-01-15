@@ -3,7 +3,6 @@ package org.example.hotelesapi.service;
 import org.example.hotelesapi.models.Hotel;
 import org.example.hotelesapi.repository.HotelRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
