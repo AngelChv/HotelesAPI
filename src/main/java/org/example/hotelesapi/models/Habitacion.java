@@ -67,27 +67,30 @@ public class Habitacion {
         this.capacidad = capacidad;
     }
 
+    @NotNull
     public double getPrecioPorNoche() {
         return precioPorNoche;
     }
 
-    public void setPrecioPorNoche(double precioPorNoche) {
+    public void setPrecioPorNoche(@NotNull double precioPorNoche) {
         this.precioPorNoche = precioPorNoche;
     }
 
+    @NotNull
     public boolean isDesayuno() {
         return desayuno;
     }
 
-    public void setDesayuno(boolean desayuno) {
+    public void setDesayuno(@NotNull boolean desayuno) {
         this.desayuno = desayuno;
     }
 
+    @NotNull
     public boolean isOcupada() {
         return ocupada;
     }
 
-    public void setOcupada(boolean ocupada) {
+    public void setOcupada(@NotNull boolean ocupada) {
         this.ocupada = ocupada;
     }
 

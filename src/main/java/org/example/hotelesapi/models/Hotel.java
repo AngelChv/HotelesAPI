@@ -87,19 +87,20 @@ public class Hotel {
         this.categoria = categoria;
     }
 
+    @NotNull
     public boolean isPiscina() {
         return piscina;
     }
 
-    public void setPiscina(boolean piscina) {
+    public void setPiscina(@NotNull boolean piscina) {
         this.piscina = piscina;
     }
 
-    public String getLocalidad() {
+    public @NotNull String getLocalidad() {
         return localidad;
     }
 
-    public void setLocalidad(String localidad) {
+    public void setLocalidad(@NotNull String localidad) {
         this.localidad = localidad;
     }
 
