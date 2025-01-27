@@ -38,7 +38,7 @@ public class HabitacionController {
     }
 
     @PostMapping("save")
-    @Operation(summary = "Guardar una habitación", description = "Guarda una habitación en la base de datos")
+    @Operation(summary = "Guardar una habitación y la asocia a un hotel", description = "Guarda una habitación en la base de datos")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Habitación guardada con éxito"),
             @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),})

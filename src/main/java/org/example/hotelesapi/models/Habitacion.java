@@ -1,5 +1,6 @@
 package org.example.hotelesapi.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -32,6 +33,8 @@ public class Habitacion {
     @Column(nullable = false)
     private boolean ocupada;
 
+    // Para evitar recursividad infinita.
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;

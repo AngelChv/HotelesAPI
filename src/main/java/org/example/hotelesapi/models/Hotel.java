@@ -1,5 +1,6 @@
 package org.example.hotelesapi.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -37,6 +38,8 @@ public class Hotel {
     @Column(nullable = false)
     private String localidad;
 
+    // Para evitar recursividad infinita.
+    @JsonManagedReference
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private Set<Habitacion> habitaciones;
 
