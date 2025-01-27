@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "habitaciones")
+// otra forma de evitar la recursividad infinita
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Habitacion {
     @Schema(description = "Identificador de la habitación", example = "1111", requiredMode = Schema.RequiredMode.REQUIRED)
     @Id

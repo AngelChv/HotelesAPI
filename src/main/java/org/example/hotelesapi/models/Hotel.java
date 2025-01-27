@@ -9,6 +9,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "hoteles")
+// otra forma de evitar la recursividad infinita
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Hotel {
     @Schema(description = "Identificador del hotel", example = "1111", requiredMode = Schema.RequiredMode.REQUIRED)
     @Id
