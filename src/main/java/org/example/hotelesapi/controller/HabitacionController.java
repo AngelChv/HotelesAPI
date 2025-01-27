@@ -76,12 +76,12 @@ public class HabitacionController {
         }
     }
 
-    @PostMapping("delete")
+    @DeleteMapping("delete")
     @Operation(summary = "Elimina una habitación de un hotel", description = "Elimina una habitación de un hotel")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Habitación eliminada con éxito"),
             @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),})
-    public Habitacion delete(@RequestBody @Parameter(
+    public void delete(@RequestBody @Parameter(
             required = true,
             description = "Datos a guardar de la habitación",
             example = """
@@ -93,9 +93,9 @@ public class HabitacionController {
                     "ocupada": false
                     }""") Habitacion habitacion) {
         try {
-            return service.save(habitacion);
+            service.delete(habitacion);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al guardar la habitación", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al borrar la habitación", e);
         }
     }
 }
