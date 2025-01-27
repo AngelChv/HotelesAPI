@@ -5,6 +5,7 @@ import org.example.hotelesapi.models.Hotel;
 import org.example.hotelesapi.repository.HabitacionRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HabitacionService {
@@ -23,10 +24,20 @@ public class HabitacionService {
     }
 
     public List<Habitacion> findAllByHotelAndCapacidadAndRangoPrecio(Hotel hotel, int capacidad, double precioMin, double precioMax) {
-        return repository.findAllByHotelAndCapacidadAndPrecioPorNocheAfterAndPrecioPorNocheBefore(hotel, capacidad, precioMin, precioMax);
+        return repository.findAllByHotelAndOcupadaIsFalseAndCapacidadAndPrecioPorNocheBetween(hotel, capacidad, precioMin, precioMax);
     }
 
     public void delete(Habitacion habitacion) {
         repository.delete(habitacion);
+    }
+
+    public Habitacion ocupar(int idHabitacion) {
+        Optional<Habitacion> habitacion = repository.findById(idHabitacion);
+        if (habitacion.isPresent()) {
+            Habitacion habitacionActual = habitacion.get();
+            habitacionActual.setOcupada(true);
+            return repository.save(habitacionActual);
+        }
+        return null;
     }
 }

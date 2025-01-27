@@ -9,6 +9,7 @@ import org.example.hotelesapi.models.Habitacion;
 import org.example.hotelesapi.models.Hotel;
 import org.example.hotelesapi.service.HabitacionService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -96,6 +97,23 @@ public class HabitacionController {
             service.delete(habitacion);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al borrar la habitación", e);
+        }
+    }
+
+    @PostMapping("ocupar/{idHabitacion}")
+    @Operation(summary = "Ocupar una habitación", description = "Ocupar una habitación")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Habitación ocupada con éxito"),
+            @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),})
+    public ResponseEntity<?> ocupar(@PathVariable int idHabitacion) {
+        try {
+            Habitacion habitacion = service.ocupar(idHabitacion);
+            if (habitacion != null) {
+                return new ResponseEntity<>(habitacion, HttpStatus.OK);
+            }
+            return new ResponseEntity<>("No se encuentra la habitación", HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al ocupar la habitación", e);
         }
     }
 }

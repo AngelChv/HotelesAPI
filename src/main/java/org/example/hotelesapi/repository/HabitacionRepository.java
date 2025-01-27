@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface HabitacionRepository extends JpaRepository<Habitacion, Integer> {
-    List<Habitacion> findAllByHotelAndCapacidadAndPrecioPorNocheAfterAndPrecioPorNocheBefore(Hotel hotel, int capacidad, double precioMin, double precioMax);
+    List<Habitacion> findAllByHotelAndOcupadaIsFalseAndCapacidadAndPrecioPorNocheBetween(Hotel hotel, int capacidad, double precioMin, double precioMax);
 }
