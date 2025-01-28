@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.example.hotelesapi.models.User;
 import org.example.hotelesapi.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -47,9 +48,9 @@ public class UserController {
     @Operation(summary = "Inicio de sesión", description = "El usuario inicia sesión")
     public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) {
         try {
-            User user = service.findByUsernameAndPassword(username, password);
+            User user = service.findByUsernameAndPassword(username, DigestUtils.sha256Hex(password));
             if (user == null) {
-                return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>("Usuario o contraseña incorrectas", HttpStatus.NOT_FOUND);
             }
             String token = getJWTToken(user.getUsername());
             user.setToken(token);
@@ -65,6 +66,8 @@ public class UserController {
     // como las anotaciones @NotNull
     public User register(@RequestBody @Valid User user) {
         try {
+            // Si el usuario ya existe da un error 403
+            user.setPassword(DigestUtils.sha256Hex(user.getPassword()));
             return service.save(user);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al guardar el usuario", e);

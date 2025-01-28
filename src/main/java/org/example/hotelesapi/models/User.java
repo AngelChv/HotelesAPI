@@ -29,13 +29,14 @@ public class User {
 
     @Schema(description = "Nombre de usuario", example = "angel", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotNull
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     @Getter
     private String username;
 
     @Schema(description = "Contraseña del usuario", example = "!9aF#54g*3uI", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotNull
     @Getter
+    @Setter
     @Column(nullable = false)
     private String password;
 
