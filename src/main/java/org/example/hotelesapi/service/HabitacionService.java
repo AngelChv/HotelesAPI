@@ -23,8 +23,8 @@ public class HabitacionService {
         return repository.findAll();
     }
 
-    public List<Habitacion> findAllByHotelAndCapacidadAndRangoPrecio(Hotel hotel, int capacidad, double precioMin, double precioMax) {
-        return repository.findAllByHotelAndOcupadaIsFalseAndCapacidadAndPrecioPorNocheBetween(hotel, capacidad, precioMin, precioMax);
+    public List<Habitacion> findAllByHotelIdAndCapacidadAndRangoPrecio(int idHotel, int capacidad, double precioMin, double precioMax) {
+        return repository.findAllByHotelIdAndOcupadaIsFalseAndCapacidadAndPrecioPorNocheBetween(idHotel, capacidad, precioMin, precioMax);
     }
 
     public void delete(Habitacion habitacion) {
