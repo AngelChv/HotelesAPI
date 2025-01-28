@@ -24,7 +24,7 @@ public class HotelesApiApplication {
             http.csrf().disable()
                     .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                     .authorizeHttpRequests(auth -> auth
-                            .requestMatchers(HttpMethod.POST, "/user").permitAll()
+                            .requestMatchers(HttpMethod.POST, "/user/**").permitAll()
                             .requestMatchers(HttpMethod.GET, "/hotel/{localidad}/{categoria}").permitAll()
                             .requestMatchers(HttpMethod.GET, "/habitacion/{hotel}/{capacidad}/{precioMin}/{precioMax}").permitAll()
                             .requestMatchers("/swagger-ui/**").permitAll()

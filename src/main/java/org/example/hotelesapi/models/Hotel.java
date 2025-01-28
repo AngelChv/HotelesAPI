@@ -11,6 +11,18 @@ import java.util.Set;
 @Table(name = "hoteles")
 // otra forma de evitar la recursividad infinita
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@Schema(
+        description = "Datos a guardar del hotel",
+        example = """
+                {
+                "id": 0,
+                "nombre": "NombreHotel1",
+                "descripcion": "DescripcionHotel1",
+                "categoria": "Hostal",
+                "piscina": true,
+                "localidad": "valladolid"
+                }"""
+)
 public class Hotel {
     @Schema(description = "Identificador del hotel", example = "1111", requiredMode = Schema.RequiredMode.REQUIRED)
     @Id

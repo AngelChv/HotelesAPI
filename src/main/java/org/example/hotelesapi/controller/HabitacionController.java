@@ -44,17 +44,7 @@ public class HabitacionController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Habitación guardada con éxito"),
             @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),})
-    public Habitacion save(@RequestBody @Parameter(
-            required = true,
-            description = "Datos a guardar de la habitación",
-            example = """
-                    {
-                    "id": 0,
-                    "capacidad": 2,
-                    "precioPorNoche": 50,
-                    "desayuno": false,
-                    "ocupada": false
-                    }""") Habitacion habitacion) {
+    public Habitacion save(@RequestBody Habitacion habitacion) {
         try {
             return service.save(habitacion);
         } catch (Exception e) {
@@ -82,17 +72,7 @@ public class HabitacionController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Habitación eliminada con éxito"),
             @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),})
-    public void delete(@RequestBody @Parameter(
-            required = true,
-            description = "Datos a guardar de la habitación",
-            example = """
-                    {
-                    "id": 0,
-                    "capacidad": 2,
-                    "precioPorNoche": 50,
-                    "desayuno": false,
-                    "ocupada": false
-                    }""") Habitacion habitacion) {
+    public void delete(@RequestBody Habitacion habitacion) {
         try {
             service.delete(habitacion);
         } catch (Exception e) {

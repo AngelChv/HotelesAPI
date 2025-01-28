@@ -9,6 +9,16 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "habitaciones")
 // otra forma de evitar la recursividad infinita
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+
+// Para que el ejemplo del body se muestre correctamente hay que hacerlo aquí, no en el @Parameter
+@Schema(example = """
+        {
+        "id": 0,
+        "capacidad": 2,
+        "precioPorNoche": 50,
+        "desayuno": false,
+        "ocupada": false
+        }""")
 public class Habitacion {
     @Schema(description = "Identificador de la habitación", example = "1111", requiredMode = Schema.RequiredMode.REQUIRED)
     @Id

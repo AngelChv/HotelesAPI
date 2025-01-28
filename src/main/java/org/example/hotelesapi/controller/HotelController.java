@@ -42,18 +42,7 @@ public class HotelController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Hotel guardado con éxito"),
             @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),})
-    public Hotel save(@RequestBody @Parameter(
-            required = true,
-            description = "Datos a guardar del hotel",
-            example = """
-                    {
-                    "id": 0,
-                    "nombre": "prueba1",
-                    "descripcion": "asdfasf",
-                    "categoria": "1",
-                    "piscina": true,
-                    "localidad": "valladolid"
-                    }""") Hotel hotel) {
+    public Hotel save(@RequestBody Hotel hotel) {
         try {
             return service.save(hotel);
         } catch (Exception e) {
