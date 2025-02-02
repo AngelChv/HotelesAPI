@@ -96,4 +96,18 @@ public class HabitacionController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al ocupar la habitación", e);
         }
     }
+
+    @GetMapping("/jpql")
+    @Operation(summary = "Obtener habitaciones mediante consulta JPQL", description = "Obtener habitaciones mediante consulta JPQL")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista de habitaciones obtenida exitosamente"),
+            @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),
+            @ApiResponse(responseCode = "404", description = "No se encontraron hoteles")})
+    public List<Habitacion> getHabitacionesWithJPQL() {
+        try {
+            return service.getHabitacionesWithJPQL();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al obtener los hoteles", e);
+        }
+    }
 }
